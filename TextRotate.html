@@ -1,0 +1,60 @@
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>Тект Переворот</title></head>
+<body>
+<script>
+
+function RotateLR(line){
+	var res="";
+	for(i=line.length;i>=0;i--)
+		res=res+line.charAt(i);
+	return res;
+};
+
+function LineRightLeft(text){
+	var pos = text.search('\n');
+	var res="";
+	while(pos>0)
+	{
+		line = text.substr(0,pos-1);
+		text = text.substr(pos+1);
+		res=res+RotateLR(line)+'\n';
+		pos = text.search('\n');
+	}
+	res=res+RotateLR(text);
+	return res;
+};
+
+function Rotate(){
+	LineRightLeft(document.all.text_orig.innerText);
+	document.all.text_new.innerText=LineRightLeft(document.all.text_orig.innerText);
+}
+
+</script>
+<br>
+<br>
+Переворот текста</h4>
+
+Введите текст:
+<br>
+<textarea name=text_orig rows=10 cols=60>
+Уронили мишку на пол,
+Оторвали мишке лапу.
+Все равно его не брошу —
+Потому что он хороший.
+</textarea>
+<br>
+Новый текст:
+<br>
+<textarea name=text_new rows=10 cols=60>
+</textarea>
+<br>
+<br>
+<button name=butt_GO onclick=Rotate();>Перевернуть</button>
+<script>
+document.all.butt_GO.focus();
+</script>
+</body>
+</html>
